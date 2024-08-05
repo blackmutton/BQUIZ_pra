@@ -29,6 +29,30 @@
 </fieldset>
 <script>
     function reg() {
-
+        let user = {
+            acc: $("#acc").val(),
+            pw: $("#pw").val(),
+            pw2: $("#pw2").val(),
+            email: $("#email").val(),
+        }
+        if (user.acc == '' || user.pw == '' || user.pw2 == '' || user.email == '') {
+            alert("不可空白")
+        } else if (user.pw != user.pw2) {
+            alert("密碼錯誤")
+        } else {
+            $.post("./api/chk_acc.php", {
+                acc: user.acc
+            }, (chk) => {
+                console.log(chk)
+                if (parseInt(chk) == 1) {
+                    alert("帳號重複")
+                } else {
+                    $.post("./api/reg.php", user, (res) => {
+                        console.log(res)
+                        alert("註冊完成，歡迎加入")
+                    })
+                }
+            })
+        }
     }
 </script>
