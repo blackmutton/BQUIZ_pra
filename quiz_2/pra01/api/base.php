@@ -1,4 +1,5 @@
 <?php
+session_start();
 class DB
 {
     protected $table;
@@ -111,4 +112,4 @@ function dd($array)
     echo "</pre>";
 }
 
-$User=new DB("users");
+$User = new DB("users");

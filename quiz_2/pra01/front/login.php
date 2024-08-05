@@ -26,13 +26,15 @@
         $.post("./api/chk_acc.php", {
             acc: $("#acc").val()
         }, (chkAcc) => {
-            console.log(chkAcc)
-            if (Number(chkAcc) == 1) {
+            // console.log(chkAcc)
+            if (parseInt(chkAcc) == 1) {
                 $.post("./api/chk_pw.php", {
                     acc: $("#acc").val(),
                     pw: $("#pw").val()
                 }, (chkPw) => {
-                    if (Number(chkPw)) {
+                    // 檢查需要在if迴圈外做，否則無意義，因為進迴圈的都會是正確的
+                    // console.log(chkPw)
+                    if (parseInt(chkPw)) {
                         if ($("#acc").val() == "admin") {
                             location.href = 'admin.php'
                         } else {
