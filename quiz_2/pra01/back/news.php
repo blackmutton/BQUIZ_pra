@@ -16,7 +16,7 @@
             $start=($now-1)*$div;
             $rows=$News->all(" limit $start,$div");
             foreach($rows as $idx=>$row){
-                // dd($rows);
+            // dd($rows);
 //                 Array
 // (
 //     [0] => Array
@@ -87,6 +87,7 @@
 
             ?>
             <tr>
+                <!-- 不直接用$row['id']的原因是資料可能會被刪減 -->
                 <td><?=$start+$idx+1?></td>
                 <td><?=$row['title']?></td>
                 <td><input type="checkbox" name="sh[]" value="<?=$row['id']?>"<?=($row['sh']==1)?"checked":"";?>></td>
