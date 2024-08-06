@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-08-05 14:37:15
+-- 產生時間： 2024-08-06 09:37:29
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- 資料庫： `dbpra02`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `total`
+--
+
+CREATE TABLE `total` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `total` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 傾印資料表的資料 `total`
+--
+
+INSERT INTO `total` (`id`, `date`, `total`) VALUES
+(1, '2024-08-06', 2);
 
 -- --------------------------------------------------------
 
@@ -49,6 +68,12 @@ INSERT INTO `users` (`id`, `acc`, `pw`, `email`) VALUES
 --
 
 --
+-- 資料表索引 `total`
+--
+ALTER TABLE `total`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `users`
 --
 ALTER TABLE `users`
@@ -57,6 +82,12 @@ ALTER TABLE `users`
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `total`
+--
+ALTER TABLE `total`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
