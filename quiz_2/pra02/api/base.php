@@ -113,8 +113,3 @@ function dd($array)
     echo "</pre>";
 
 }
-
-
-if(!isset($_SESSION['total'])){
-    if($Total->count(['date'=>date("Y-m-d"),'total'=>1]))
-}
