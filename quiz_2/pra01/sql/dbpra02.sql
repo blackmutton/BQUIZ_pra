@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-08-06 10:30:39
+-- 產生時間： 2024-08-07 08:38:44
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -65,6 +65,29 @@ INSERT INTO `news` (`id`, `title`, `article`, `type`, `sh`, `good`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `que`
+--
+
+CREATE TABLE `que` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `text` text NOT NULL,
+  `vote` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 傾印資料表的資料 `que`
+--
+
+INSERT INTO `que` (`id`, `text`, `vote`, `subject_id`) VALUES
+(1, '777', 0, 0),
+(2, '66', 0, 1),
+(3, '77', 0, 1),
+(4, '88', 0, 1);
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `total`
 --
 
@@ -79,7 +102,8 @@ CREATE TABLE `total` (
 --
 
 INSERT INTO `total` (`id`, `date`, `total`) VALUES
-(1, '2024-08-06', 2);
+(1, '2024-08-06', 2),
+(2, '2024-08-07', 1);
 
 -- --------------------------------------------------------
 
@@ -121,6 +145,12 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `que`
+--
+ALTER TABLE `que`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `total`
 --
 ALTER TABLE `total`
@@ -140,7 +170,7 @@ ALTER TABLE `users`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `news`
@@ -149,10 +179,16 @@ ALTER TABLE `news`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `que`
+--
+ALTER TABLE `que`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `total`
 --
 ALTER TABLE `total`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
