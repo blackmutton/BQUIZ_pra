@@ -50,7 +50,4 @@
         })
     }
 
-    function clean() {
-
-    }
 </script>

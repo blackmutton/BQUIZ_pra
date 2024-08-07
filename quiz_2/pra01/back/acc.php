@@ -21,7 +21,7 @@
     </table>
     <div class="ct">
         <button onclick="del()">確定刪除</button>
-        <button onclick="clear()">清空選取</button>
+        <button onclick="bye()">清空選取</button>
     </div>
     <h2>新增會員</h2>
     <div style="color:red">請設定您要註冊的帳號及密碼(最長12個字元)</div>
