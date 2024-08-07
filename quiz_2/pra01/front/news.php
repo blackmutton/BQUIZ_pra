@@ -7,6 +7,7 @@
         <td width:60%>內容</td>
         <td></td>
     </tr>
+    <!-- 從back/news.php複製來的 -->
     <?php
             $total=$News->count(['sh'=>1]);
             $div=5;
