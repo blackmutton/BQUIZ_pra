@@ -63,8 +63,58 @@ class DB
             $tmp = $this->a2s($arg);
             $sql .= " where " . join(" && ", $tmp);
         } else {
-            $sql .= " where `id`=$arg";
+            $sql .= " where `id`='$arg'";
         }
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
+    public function del($arg)
+    {
+        $sql="delete from `$this->table`";
+        if(is_array($arg)){
+            $tmp=$this->a2s($arg);
+            $sql.=" where ".join(" && ",$tmp);
+        }else{
+            $sql.=" where `id`='$arg'";
+        }
+        return $this->pdo->exec($sql);
+    }
+
+    public function save($arg)
+    {
+        if(isset($arg['id'])){
+            $tmp=$this->a2s($arg);
+            $sql="update `$this->table` set ".join(" && ",$tmp);
+            $sql.=" where `id`='{$arg['id']}'";
+        }else{
+            $keys =array_keys($arg);
+            $sql="insert into `$this->table` (`".join("`,`",$keys)"`) values('".join("','",$arg)."')";
+        }
+        return $this->pdo->exec($sql);
+    }
+}
+
+
+function q($sql)
+{
+    $dsn="mysql:host=localhost;charset=utf8;dbname=dbpra02";
+    $pdo=new PDO($dsn,'root','');
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function to($url)
+{
+    header("location:".$url);
+}
+
+function dd($array)
+{
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
+
+}
+
+
+if(!isset($_SESSION['total'])){
+    if($Total->count(['date'=>date("Y-m-d"),'total'=>1]))
 }
