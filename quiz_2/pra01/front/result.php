@@ -2,6 +2,12 @@
 <?php
 $subject = $Que->find($_GET['id']);
 ?>
+<style>
+    .bar {
+        height: 25px;
+        background-color: #ccc;
+    }
+</style>
 <fieldset>
     <legend>目前位置:首頁 > 問卷調查 > <?= $subject['text'] ?></legend>
     <h4><?= $subject['text'] ?></h4>
@@ -10,13 +16,15 @@ $subject = $Que->find($_GET['id']);
     foreach ($options as $option) {
         $rate = $option['vote'] / $subject['vote'];
         $show = round($rate, 2) * 100;
+        $width = $rate * 75;
         echo "<div style='display:flex'>";
-        echo "<div style='width:50%'>";
-        echo $option['text'];
-        echo "</div>";
-        echo "<div style='width:50%'>";
-        echo "<div class='bar'></div>";
-        echo "<div>{$option['vote']}票{$show}%</div>";
+        echo    "<div style='width:50%'>";
+        echo        $option['text'];
+        echo    "</div>";
+        echo    "<div style='width:50%;;display:flex''>";
+        echo        "<div class='bar' style='width:{$width}%'></div>";
+        echo        "<div>{$option['vote']}票{$show}%</div>";
+        echo    "</div>";
         echo "</div>";
     }
     ?>
