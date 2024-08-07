@@ -14,21 +14,24 @@ include "./api/base.php";
 	<script src="./js/jquery-3.4.1.min.js"></script>
 	<script src="./js/js.js"></script>
 	<style>
-		.alert{
-			background:rgba(51,51,51,0.8); 
-			color:#FFF;
-			min-height:100px; 
-			width:300px; 
-			position:fixed; 
-			display:none; 
-			z-index:9999; 
-			overflow:auto;
+		.alert {
+			background: rgba(51, 51, 51, 0.8);
+			padding: 10px;
+			box-shadow: 2px 2px 10px #999;
+			border-radius: 5px 5px 0 0;
+			color: #FFF;
+			height: 350px;
+			width: 300px;
+			position: fixed;
+			display: none;
+			z-index: 9999;
+			overflow: auto;
 		}
 	</style>
 </head>
 
 <body>
-	
+
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
