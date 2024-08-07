@@ -35,7 +35,25 @@
                     <?= nl2br($row['article']) ?>
                 </div>
             </td>
-            <td><?= $row['good'] ?></td>
+            <td>
+                <span class="num"><?= $row['good'] ?></span>個人說
+                <img src="./icon/02B03.jpg" alt="" style="width:20px">
+                <?php
+                // 這段從news.php複製來的
+                if (isset($_SESSION['user'])) {
+                    $chk = $Log->count(['user' => $_SESSION['user'], 'news' => $row['id']]);
+                    if ($chk > 0) {
+                        echo "<a href='#'data-user='{$_SESSION['user']}'data-news='{$row['id']}'class='good'>";
+                        echo "收回讚";
+                        echo "</a>";
+                    } else {
+                        echo "<a href='#'data-user='{$_SESSION['user']}'data-news='{$row['id']}'class='good'>";
+                        echo "讚";
+                        echo "</a>";
+                    }
+                }
+                ?>
+            </td>
         </tr>
     <?php
     }
@@ -62,8 +80,28 @@
         $(".pop-header").hover(
             function() {
                 $(this).parent().find('.alert').show()
-            },function(){
+            },
+            function() {
                 $(this).parent().find('.alert').hide()
             }
         )
+        // 這段從news.php複製來的
+        $(".good").on("click", function() {
+            let data = {
+                user: $(this).data('user'),
+                news: $(this).data('news')
+            }
+
+            $.post("./api/good.php", data, (res) => {
+                // console.log(res)
+                switch ($(this).text()) {
+                    case "讚":
+                        $(this).text("收回讚")
+                        break;
+                    case "收回讚":
+                        $(this).text("讚")
+                        break;
+                }
+            })
+        })
     </script>
