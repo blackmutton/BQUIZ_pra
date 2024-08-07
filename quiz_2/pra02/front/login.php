@@ -22,6 +22,22 @@
 </fieldset>
 <script>
     function login(){
-
+        $.post("./api/chk_acc.php",{acc:$("#acc").val()},(chkAcc)=>{
+            if(parseInt(chkAcc)==1){
+                $.post("./api/chk_pw.php",{acc:$("#acc").val(),pw:$("#pw").val()},(chkPw)=>{
+                    if(parseInt(chkPw)){
+                        if($("#acc").val()=='admin'){
+                            location.href='admin.php';
+                        }else{
+                            location.href='index.php';
+                        }
+                    }else{
+                            alert("密碼錯誤")
+                        }
+                })
+            }else{
+                alert("查無帳號")
+            }
+        })
     }
 </script>
