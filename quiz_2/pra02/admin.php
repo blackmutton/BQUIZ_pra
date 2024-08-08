@@ -51,7 +51,7 @@ include "./api/base.php";
 							<button onclick="location.href='./api/logout.php'">登出</button>
 							<?php
 						}else{
-							echo "<a href='?do=login'>會員登入</a>"
+							echo "<a href='?do=login'>會員登入</a>";
 						}
 						?>
 					</span>

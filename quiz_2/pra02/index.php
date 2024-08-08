@@ -21,11 +21,11 @@ include "./api/base.php";
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36
+			<?=date("m月d號l")?> | 今日瀏覽: <?=$_SESSION['total']?>| 累積瀏覽: <?=q("select sum(`total`) as total from `total`")[0]['total']?>
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
 		<div id="title2">
-			<a href="index.php">
+			<a href="index.php"title="健康促進網-回首頁">
 				<img src="./icon/02B01.jpg" alt="">
 			</a>
 		</div>
@@ -51,7 +51,7 @@ include "./api/base.php";
 							<button onclick="location.href='./api/logout.php'">登出</button>
 							<?php
 						}else{
-							echo "<a href='?do=login'>會員登入</a>"
+							echo "<a href='?do=login'>會員登入</a>";
 						}
 						?>
 					</span>

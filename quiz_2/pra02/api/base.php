@@ -87,7 +87,7 @@ class DB
             $sql.=" where `id`='{$arg['id']}'";
         }else{
             $keys =array_keys($arg);
-            $sql="insert into `$this->table` (`".join("`,`",$keys)"`) values('".join("','",$arg)."')";
+            $sql="insert into `$this->table` (`".join("`,`",$keys)."`) values('".join("','",$arg)."')";
         }
         return $this->pdo->exec($sql);
     }
@@ -98,7 +98,7 @@ function q($sql)
 {
     $dsn="mysql:host=localhost;charset=utf8;dbname=dbpra02";
     $pdo=new PDO($dsn,'root','');
-    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    return $pdo->query($sql)->fetchAll();
 }
 
 function to($url)
@@ -115,3 +115,30 @@ function dd($array)
 }
 
 $User=new DB("users");
+$Total=new DB("total");
+
+if(!isset($_SESSION['total'])){
+    if($Total->count(['date'=>date("Y-m-d")])){
+        $total=$Total->find(['date'=>date("Y-m-d")]);
+        $total['total']++;
+        $Total->save($total);
+    }else{
+    $Total->save(['date'=>date("Y-m-d"),'total'=>1]);
+}
+    $_SESSION['total']=$Total->find(['date'=>date("Y-m-d")])['total'];
+}
+// dd($Total->find(['date' => date("Y-m-d")]))
+// Array
+// (
+//     [id] => 1
+//     [date] => 2024-08-06
+//     [total] => 2
+// )
+
+// dd(q("select sum(`total`) as 'total' from `total`"))
+// Array(
+    // [0] => Array
+        // (
+            // [total] => 2
+        // )
+// )

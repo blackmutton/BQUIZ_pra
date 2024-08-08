@@ -19,7 +19,7 @@
             <td><input type="email" name="email" id="email"></td>
         </tr>
         <tr>
-            <td class="clo">
+            <td>
                 <button onclick="reg()">註冊</button>
                 <button onclick="clean()">清除</button>
             </td>
@@ -35,7 +35,7 @@
             pw2:$("#pw2").val(),
             email:$("#email").val()
         }
-        if(user.acc=""||user.pw=""||user.pw2=""||user.email=""){
+        if(user.acc==""||user.pw==""||user.pw2==""||user.email==""){
             alert("不可空白")
         }else if(user.pw!=user.pw2){
             alert("密碼錯誤")
