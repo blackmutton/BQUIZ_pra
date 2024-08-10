@@ -47,11 +47,26 @@ include "./api/base.php";
 						<?php
 						if(isset($_SESSION['user'])){
 							echo "歡迎，{$_SESSION['user']}";
+							// dd($_SESSION);
+							// Array
+							// (
+							    // [login] => 1
+							    // [total] => 3
+							    // [user] => mem01
+							// )
+
 							?>
 							<button onclick="location.href='./api/logout.php'">登出</button>
 							<?php
 						}else{
 							echo "<a href='?do=login'>會員登入</a>";
+							// dd($_SESSION);
+							// Array
+							// (
+							    // [login] => 1
+							    // [total] => 3
+							// )
+
 						}
 						?>
 					</span>
