@@ -18,9 +18,9 @@
     foreach($rows as $row){
     ?>
     <tr>
-        <td><?=$row['title']?></td>
-        <td><?=mb_substr($row['article'],0,30)?></td>
-        <td></td>
+        <td class="title"><?=$row['title']?></td>
+        <td class="short"><?=mb_substr($row['article'],0,30)?></td>
+        <td class="all" style="display:none"><?=nl2br($row['article'])?></td>
     </tr>
     <?php
     }
@@ -42,3 +42,8 @@ if($now+1<=$pages){
 }
 ?>
 </div>
+<script>
+    $(".title").on("click",function(){
+        $(this).next().children(".short,.all").toggle()
+    })
+</script>
