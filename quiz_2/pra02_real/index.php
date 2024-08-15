@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<?php
+include "./api/base.php";
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -35,7 +38,17 @@
                     	                    	<marquee>請民眾踴躍投稿電子稿，讓電子報成為大家相互交流、分享的園地!詳情請見最新文章</marquee>
                     	                    </span>
                 	<span style="width:18%; display:inline-block;">
-                    	                    	<a href="?do=login">會員登入</a>
+						<?php
+						if(isset($_SESSION['user'])){
+							echo "歡迎,{$_SESSION['user']}";
+							?>
+							<button onclick="location.href='./api/logout.php'">登出</button>
+							<?php
+						}else{
+							echo "<a href='?do=login'>會員登入</a>";
+						}
+						?>
+                    	                    	
                     	                    </span>
                     	<div class="">
                 		                        </div>

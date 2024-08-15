@@ -100,3 +100,4 @@ function dd($array){
     echo "</pre>";
 }
 
+$User=new DB("users");
