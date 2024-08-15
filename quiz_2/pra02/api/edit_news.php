@@ -1,7 +1,8 @@
 <?php
 include "base.php";
+
 foreach($_POST['id'] as $id){
-    if(isset($_POST['del']&&in_array($id,$_POST['del']))){
+    if(isset($_POST['id'])&&in_array($id,$_POST['id'])){
         $News->del($id);
     }else{
         $row=$News->find($id);
@@ -9,5 +10,3 @@ foreach($_POST['id'] as $id){
         $News->save($row);
     }
 }
-
-to("../admin.php?do=news");

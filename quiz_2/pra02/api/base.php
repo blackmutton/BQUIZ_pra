@@ -69,25 +69,25 @@ class DB
     }
     public function del($arg)
     {
-        $sql="delete from `$this->table`";
-        if(is_array($arg)){
-            $tmp=$this->a2s($arg);
-            $sql.=" where ".join(" && ",$tmp);
-        }else{
-            $sql.=" where `id`='$arg'";
+        $sql = "delete from `$this->table`";
+        if (is_array($arg)) {
+            $tmp = $this->a2s($arg);
+            $sql .= " where " . join(" && ", $tmp);
+        } else {
+            $sql .= " where `id`='$arg'";
         }
         return $this->pdo->exec($sql);
     }
 
     public function save($arg)
     {
-        if(isset($arg['id'])){
-            $tmp=$this->a2s($arg);
-            $sql="update `$this->table` set ".join(" && ",$tmp);
-            $sql.=" where `id`='{$arg['id']}'";
-        }else{
-            $keys =array_keys($arg);
-            $sql="insert into `$this->table` (`".join("`,`",$keys)."`) values('".join("','",$arg)."')";
+        if (isset($arg['id'])) {
+            $tmp = $this->a2s($arg);
+            $sql = "update `$this->table` set " . join(" && ", $tmp);
+            $sql .= " where `id`='{$arg['id']}'";
+        } else {
+            $keys = array_keys($arg);
+            $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) values('" . join("','", $arg) . "')";
         }
         return $this->pdo->exec($sql);
     }
@@ -96,14 +96,14 @@ class DB
 
 function q($sql)
 {
-    $dsn="mysql:host=localhost;charset=utf8;dbname=dbpra02";
-    $pdo=new PDO($dsn,'root','');
-    return $pdo->query($sql)->fetchAll();
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=dbpra02";
+    $pdo = new PDO($dsn, 'root', '');
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function to($url)
 {
-    header("location:".$url);
+    header("location:" . $url);
 }
 
 function dd($array)
@@ -111,35 +111,19 @@ function dd($array)
     echo "<pre>";
     print_r($array);
     echo "</pre>";
-
 }
 
-$User=new DB("users");
-$Total=new DB("total");
-$News=new DB("news");
+$User = new DB("users");
+$Total = new DB("total");
+$News = new DB("news");
 
-if(!isset($_SESSION['total'])){
-    if($Total->count(['date'=>date("Y-m-d")])){
-        $total=$Total->find(['date'=>date("Y-m-d")]);
+if (!isset($_SESSION['total'])) {
+    if ($Total->count(['date' => date("Y-m-d")]) > 0) {
+        $total = $Total->find(['date' => date("Y-m-d")]);
         $total['total']++;
         $Total->save($total);
-    }else{
-    $Total->save(['date'=>date("Y-m-d"),'total'=>1]);
+    } else {
+        $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
+    }
+    $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
 }
-    $_SESSION['total']=$Total->find(['date'=>date("Y-m-d")])['total'];
-}
-// dd($Total->find(['date' => date("Y-m-d")]))
-// Array
-// (
-//     [id] => 1
-//     [date] => 2024-08-06
-//     [total] => 2
-// )
-
-// dd(q("select sum(`total`) as 'total' from `total`"))
-// Array(
-    // [0] => Array
-        // (
-            // [total] => 2
-        // )
-// )

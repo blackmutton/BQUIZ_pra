@@ -31,11 +31,11 @@ include "./api/base.php";
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			<?=date("m月d號l")?> | 今日瀏覽: <?=$_SESSION['total']?>| 累積瀏覽: <?=q("select sum(`total`) as total from `total`")[0]['total']?>
+			<?= $date("m月d號l") ?> | 今日瀏覽: <?= $_SESSION['total'] ?> | 累積瀏覽: <?= q("select sum(`total`) as 'total' from `total`")[0]['total'] ?>
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
 		<div id="title2">
-			<a href="index.php"title="健康促進網-回首頁">
+			<a href="index.php" title="健康促進網-回首頁">
 				<img src="./icon/02B01.jpg" alt="">
 			</a>
 		</div>
@@ -55,38 +55,23 @@ include "./api/base.php";
 					</span>
 					<span style="width:18%; display:inline-block;">
 						<?php
-						if(isset($_SESSION['user'])){
+						if (isset($_SESSION['user'])) {
 							echo "歡迎，{$_SESSION['user']}";
-							// dd($_SESSION);
-							// Array
-							// (
-							    // [login] => 1
-							    // [total] => 3
-							    // [user] => mem01
-							// )
-
-							?>
+						?>
 							<button onclick="location.href='./api/logout.php'">登出</button>
-							<?php
-						}else{
+						<?php
+						} else {
 							echo "<a href='?do=login'>會員登入</a>";
-							// dd($_SESSION);
-							// Array
-							// (
-							    // [login] => 1
-							    // [total] => 3
-							// )
-
 						}
 						?>
 					</span>
 					<div class="content">
 						<?php
-						$do=$_GET['do']??'main';
-						$file="./front/{$do}.php";
-						if(file_exists($file)){
+						$do = $_GET['do'] ?? 'main';
+						$file = "./front/{$do}.php";
+						if (file_exists($file)) {
 							include $file;
-						}else{
+						} else {
 							include "./front/main.php";
 						}
 						?>
