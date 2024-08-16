@@ -14,8 +14,8 @@ class DB{
         $tmp=[];
         foreach($array as $key=>$value){
             $tmp[]="`$key`='$value'";
-            return $tmp;
         }
+        return $tmp;
 
     }
 

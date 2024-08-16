@@ -50,16 +50,17 @@ include "./api/base.php";
 						?>
                     	                    	
                     	                    </span>
-                    	<div class="content">
+											<div class="content">
                 		      <?php
 							 $do=$_GET['p']??'main';
-							 $file="./front/{$do}.php";
+							 $file="./back/{$do}.php";
 							 if(file_exists($file)){
 								include $file;
 							 } else{
-								include "./front/main.php";
+								include "./back/main.php";
 							 }
-							  ?>                  </div>
+							  ?> 
+                		                        </div>
                 </div>
             </div>
         </div>
