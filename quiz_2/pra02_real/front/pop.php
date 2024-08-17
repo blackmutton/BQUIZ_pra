@@ -2,7 +2,7 @@
     目前位置: 首頁 > 人氣文章區
 </div>
 
-<table class="tab">
+<table class="tab pop">
     <tr>
         <td width="30%">標題</td>
         <td width="50%">內容</td>
@@ -18,9 +18,21 @@
     foreach($rows as $idx=>$row){
     ?>
     <tr>
-        <td><?=$row['title']?></td>
-        <td>
-            <?=mb_substr($row['article'],0,30)?>...
+        <td class="pop-header"><?=$row['title']?></td>
+        <td class="pop-header">
+            <div class="short">
+
+                <?=mb_substr($row['article'],0,30)?>...
+            </div>
+            <div class="alert">
+                <div>
+                    <?php
+                    $type=['','健康新知','菸害防治', '癌症防治', '慢性病防治'];
+                    echo $type[$row['type']];
+                    ?>
+                </div>
+                <?=nl2br($row['article'])?>
+            </div>
         </td>
         <td><?=$row['good']?></td>
     </tr>
@@ -44,3 +56,13 @@
     }
     ?>
 </div>
+
+<script>
+    $(".pop.header").hover{
+        function(){
+            $(this).parent().find(".alert").show()
+        },function(){
+            $(this).parent().find(".alert").hide()
+        }
+    }
+</script>
