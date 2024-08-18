@@ -10,4 +10,4 @@ foreach($_POST['id'] as $key=>$id){
         $row['sh']=(isset($_POST['sh'])&&$_POST['sh']==$id)?1:0;
         $Title->save($row);
     }
-}
+}to("../admin.php?do=title");
