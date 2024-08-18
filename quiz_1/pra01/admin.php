@@ -75,12 +75,12 @@
                                     </tr>
                                 </tbody></table>
 								<?php
-				$do=$_GET['do']??"main";
+				$do=$_GET['do']??"title";
 				$file="./back/{$do}.php";
 				if(file_exists($file)){
 					include "$file";
 				}else{
-					include "./back/main.php";
+					include "./back/title.php";
 				}
 				?>
                                 
