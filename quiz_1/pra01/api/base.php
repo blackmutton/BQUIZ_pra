@@ -1,13 +1,12 @@
 <?php
-session_start();
 class DB{
     protected $table;
-    protected $dsn="mysql:host=localhost;charset=utf8;dbname=dbpra02";
+    protected $dsn="mysql:host=localhost;charset=utf8;dbname=dbpra01";
     protected $pdo;
 
     public function __construct($table){
         $this->table=$table;
-        $this->pdo=new PDO($this->dsn,"root","");
+        $this->pdo=new PDO($this->dsn,'root','');
     }
 
     protected function a2s($array){
@@ -16,7 +15,6 @@ class DB{
             $tmp[]="`$key`='$value'";
         }
         return $tmp;
-
     }
 
     public function all(...$arg){
@@ -27,7 +25,7 @@ class DB{
                 $sql.=" where ".join(" && ",$tmp);
             }else{
                 $sql.=$arg[0];
-            }
+            }      
         }
         if(isset($arg[1])){
             $sql.=$arg[1];
@@ -48,7 +46,7 @@ class DB{
         if(isset($arg[1])){
             $sql.=$arg[1];
         }
-        return $this->pdo->query($sql)->fetchColumn()
+        return $this->pdo->query($sql)->fetchColumn();
     }
 
     public function find($arg){
@@ -76,19 +74,18 @@ class DB{
     public function save($arg){
         if(isset($arg['id'])){
             $tmp=$this->a2s($arg);
-            $sql="update `$this->table` set ".join(",",$tmp);
-            $sql.=" where `id`='{$arg['id']}'";
+            $sql="update `$this->table` set ".join(" , ",$tmp)." where `id`='{$arg['id']}'";
         }else{
             $keys=array_keys($arg);
-            $sql="insert into `$this->table`(`".join("`,`",$keys)."`) values('".join("','",$arg)."')";
+            $sql="insert into `$this->table`(`".join("`,`",$keys)."`) values ('".join("','",$arg)."')";
         }
         return $this->pdo->exec($sql);
     }
 }
 
 function q($sql){
-    $dsn="mysql:host=localhost;charset=utf8;dbname=dbpra02";
-    $pdo=new PDO($dsn,'root','');
+    $dsn="mysql:host=localhost;charset=utf8;dbname=dbpra01";
+    $pdo=new PDO($this->dsn,'root','');
     return $pdo->query($sql)->fetchAll();
 }
 function to($url){
@@ -99,20 +96,4 @@ function dd($array){
     print_r($array);
     echo "</pre>";
 }
-
-$User=new DB("users");
-$Total=new DB("total");
-$News=new DB("news");
-$Log=new DB("logs");
-$Que=new DB("que");
-
-if(!isset($_SESSION['total'])){
-    if($Total->count(['date'=>date("Y-m-d")])>0){
-        $total=$Total->find(['date'=>date("Y-m-d")]);
-        $total['total']++;
-        $Total->save($total);
-    }else{
-        $Total->save(['date'=>date("Y-m-d"),'total'=>1]);
-    }
-    $_SESSION['total']=$Total->find(['date'=>date("Y-m-d")])['total'];
-}
+$Title=new DB("titles");
