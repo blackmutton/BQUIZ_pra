@@ -8,6 +8,9 @@ foreach($_POST['id'] as $key=>$id){
         $row=$Title->find($id);
         $row['text']=$_POST['text'][$key];
         $row['sh']=(isset($_POST['sh'])&&$_POST['sh']==$id)?1:0;
-        $Title->save($row);
+        // $Title->save($row);
     }
-}to("../admin.php?do=title");
+}
+unset($_POST['table']);
+dd($_POST);
+to("../admin.php?do=title");
