@@ -19,7 +19,7 @@
                     <img src="./images/<?=$row['img']?>" style="width:300px;height:300px">
                 </td>
                 <td width="23%">
-                    <input type="text" name="text" value="<?=$row['text']?>">
+                    <input type="text" name="text[]" value="<?=$row['text']?>">
                 </td>
                 <td width="7%">
                     <input type="radio" name="sh" value="<?=$row['id']?>">
@@ -28,6 +28,7 @@
                     <input type="checkbox" name="del[]" value="<?=$row['id']?>">
                 </td>
                 <td></td>
+                <input type="hidden" name="id[]"value="<?=$row['id']?>">
             </tr>
             <?php
             }

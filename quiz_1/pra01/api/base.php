@@ -97,3 +97,4 @@ function dd($array){
     echo "</pre>";
 }
 $Title=new DB("titles");
+$Ad=new DB("ads");
