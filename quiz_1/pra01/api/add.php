@@ -10,6 +10,9 @@ if(!empty($_FILES['img']['tmp_name'])){
 
     
 }
+if($do=='admin'){
+    unset($_POST['pw2']);
+}
 unset($_POST['table']);
 $db->save($_POST);
 to("../admin.php?do=$do");

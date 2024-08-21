@@ -99,3 +99,7 @@ function dd($array){
 $Title=new DB("titles");
 $Ad=new DB("ads");
 $Mvim=new DB("mvim");
+$Image=new DB("image");
+$News=new DB("news");
+$Admin=new DB("admin");
+$Menu=new DB("menu");
