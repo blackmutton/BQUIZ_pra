@@ -20,4 +20,4 @@ foreach($_POST['id'] as $key=>$id){
     }
 }
 
-to("../admin.php?do=title");
+to("../admin.php?do=$do");

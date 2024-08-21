@@ -27,7 +27,7 @@
                 <td width="7%">
                     <input type="checkbox" name="del[]" value="<?=$row['id']?>"<?=($row['sh']==1)?"checked":""?>>
                 </td>
-                <td></td>
+                <td><input type="button" value="更換圖片" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modals/<?=$do?>_update.php?id=<?=$row['id']?>&#39;)"></td>
                 <input type="hidden" name="id[]"value="<?=$row['id']?>">
             </tr>
             <?php
