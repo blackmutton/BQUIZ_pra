@@ -14,7 +14,20 @@ foreach($_POST['id'] as $key=>$id){
         if($do=='title'){
             $row['sh']=(isset($_POST['sh'])&&$_POST['sh']==$id)?1:0;
         }else{
-            $row['sh']=(isset($_POST['sh'])&&in_array($id,$_POST['sh']))?1:0;
+            if(isset($_POST['sh'])){
+                $row['sh']=(isset($_POST['sh'])&&in_array($id,$_POST['sh']))?1:0;
+            }else{
+                switch($do){
+                    case 'admin':
+                        $row['acc']=$_POST['acc'][$key];
+                        $row['pw']=$_POST['pw'][$key];
+                        break;
+                    case 'menu':
+                        $row['href']=$_POST['href'][$key];
+                        $row['text']=$_POST['text'][$key];
+                        break;
+                }
+            }
         }
         $db->save($row);
     }
