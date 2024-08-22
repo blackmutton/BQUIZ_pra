@@ -10,12 +10,19 @@
             <td>刪除</td>
             
         </tr>
+        <?php
+        $rows=$Menu->all(['main_id'=>$_GET['id']]);
+        foreach($rows as $row){
+        ?>
         <tr>
-        <td><input type="text" name="text[]"></td>
-            <td><input type="text" name="href[]"></td>
+        <td><input type="text" name="text[]" value="<?=$row['text']?>"></td>
+            <td><input type="text" name="href[]" value="<?=$row['href']?>"></td>
             <td><input type="checkbox" name="del[]"></td>
+            <input type="hidden" name="id[]"value=<?=$row['id']?>>
         </tr>
-        
+        <?php
+        }
+        ?>
         <tr>
             <td>
             <input type="hidden" name="table"vlaue="menu">
