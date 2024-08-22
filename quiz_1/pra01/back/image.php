@@ -11,6 +11,11 @@
                 
             </tr>
             <?php
+            $total=$(ucfirst($do))->count();
+            $div=3;
+            $pages=ceil($total/$div);
+            $now=$_GET['p']??1;
+            $start=($now -1)*$div;
             $rows=${ucfirst($do)}->all();
             foreach($rows as $row){
             ?>
@@ -34,6 +39,22 @@
             }
             ?>
     </tbody></table>
+    <div class="cent">
+        <?php
+        if($now-1>=1){
+            $prev=$now-1;
+            echo "<a href='?do=image&p=$prev'> < </a>";
+        }
+        for($i=1;$i<=$pages;$i++){
+            $font=($i==$_GET['p'])?"20px":"16px";
+            echo "<a href='?do=image&p=$i'style='font-size:$font'> $i </a>";
+        }
+        if($now+1<=$pages){
+            $nexr=$now+1;
+            echo "<a href='?do=image&p=$next'> > </a>";
+        }
+        ?>
+    </div>
            <table style="margin-top:40px; width:70%;">
      <tbody><tr>
       <td width="200px">
