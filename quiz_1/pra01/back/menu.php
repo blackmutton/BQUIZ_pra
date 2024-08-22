@@ -26,13 +26,13 @@
                     <input type="text" name="text[]" value="<?=$row['text']?>"style="width:98%">
                 </td>
                 <td width="10%">
-                    <input type="checkbox" name="sh[]" value="<?=$row['id']?>">
+                    <input type="checkbox" name="sh[]" value="<?=$row['id']?>"<?=($row['sh']==1)?'checked':''?>>
                 </td>
                 <td width="10%">
                     <input type="checkbox" name="del[]" value="<?=$row['id']?>">
                 </td>
                 <td width="10%">
-                    <input type="button" value="編輯次選單" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modals/<?=submenu?>.php?id=<?=$row['id']?>&#39;)">
+                    <input type="button" value="編輯次選單" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modals/submenu.php?id=<?=$row['id']?>&#39;)">
                 </td>
                 
                 <input type="hidden" name="id[]"value="<?=$row['id']?>">
