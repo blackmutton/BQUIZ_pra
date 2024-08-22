@@ -1,3 +1,4 @@
+<!-- 從edit.php複製而來 -->
 <?php
 include "base.php";
 $do=$_POST['table'];

@@ -1,3 +1,6 @@
+<?php
+include "../api/base.php";
+?>
 <h3 class="cent">編輯次選單</h3>
 <hr>
 
@@ -40,9 +43,10 @@
         let str=`
         <tr>
         <td><input type="text" name="text2[]"></td>
-        <td><input type="text" name="href2[]" value="<?=$row['href']?>"></td>
+        <td><input type="text" name="href2[]"></td>
             <td></td>
         </tr>
         `
+        $("#submenu").append(str);
     }
 </script>
