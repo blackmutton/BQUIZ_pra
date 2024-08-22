@@ -16,7 +16,7 @@
             $pages=ceil($total/$div);
             $now=$_GET['p']??1;
             $start=($now -1)*$div;
-            $rows=${ucfirst($do)}->all();
+            $rows=${ucfirst($do)}->all(" limit $start,$div");
             foreach($rows as $row){
             ?>
             <tr class="cent">
@@ -43,15 +43,15 @@
         <?php
         if($now-1>=1){
             $prev=$now-1;
-            echo "<a href='?do=image&p=$prev'> < </a>";
+            echo "<a href='?do=$do&p=$prev'> < </a>";
         }
         for($i=1;$i<=$pages;$i++){
             $font=($i==$_GET['p'])?"20px":"16px";
-            echo "<a href='?do=image&p=$i'style='font-size:$font'> $i </a>";
+            echo "<a href='?do=$do&p=$i'style='font-size:$font'> $i </a>";
         }
         if($now+1<=$pages){
             $nexr=$now+1;
-            echo "<a href='?do=image&p=$next'> > </a>";
+            echo "<a href='?do=$do&p=$next'> > </a>";
         }
         ?>
     </div>
