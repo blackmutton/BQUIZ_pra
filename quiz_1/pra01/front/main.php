@@ -74,6 +74,13 @@
 								$("#altt").hide()
 							}
 						)
+						$("#altt").hover{
+							function(){
+								$("#altt").show()
+							},function(){
+								$("#altt").hide()
+							}
+						}
                         </script>
                     </div>
                 	                </div>
