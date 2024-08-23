@@ -15,7 +15,7 @@
 		$rows=${ucfirst($do)}->all(" limit $start,$div");
 		
 		?>
-		<ol>
+		<ol start="<?=$start+1?>">
 			<?php
 			foreach($rows as $row){
 				echo "<li class='ssww'>";
@@ -51,7 +51,7 @@
 						$(".sswww").hover(
 							function ()
 							{
-								$("#alt").html(""+$(this).children(".all").html()+"").css({"top":$(this).offset().top-50})
+								$("#alt").html("<pre>"+$(this).children(".all").html()+"</pre>").css({"top":$(this).offset().top-50})
 								$("#alt").show()
 							}
 						)
