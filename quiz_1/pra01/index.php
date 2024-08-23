@@ -50,14 +50,26 @@
                 	<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=login&#39;)">管理登入</button>
                 	<div style="width:89%; height:480px;" class="dbor">
                     	<span class="t botli">校園映象區</span>
+						<div class="cent" onclick='pp(1)'><img src="./icon/up.jpg" alt=""style='margin:5px 0'></div>
+						<?php
+						$ims=$Image->all(['sh'=>1]);
+						foreach($ims as $key=>$im){
+						?>
+						<div class="im cent" id="ssaa<?=$key?>"style='margin:2px 0'>
+							<img src="./images/<?=$im['img']?>" alt=""style='width:150px;height:103px;border:2px solid orange'>
+						</div>
+						<?php
+						}
+						?>
+						<div class="cent" onclick='pp(2)'><img src="./icon/dn.jpg" alt=""style='margin:5px 0'></div>
 						                        <script>
-                        	var nowpage=0,num=0;
+                        	var nowpage=0,num=<?=$Image->count(['sh'=>1])?>;
 							function pp(x)
 							{
 								var s,t;
 								if(x==1&&nowpage-1>=0)
 								{nowpage--;}
-								if(x==2&&(nowpage+1)*3<=num*1+3)
+								if(x==2&&(nowpage+1)<=num-3)
 								{nowpage++;}
 								$(".im").hide()
 								for(s=0;s<=2;s++)
