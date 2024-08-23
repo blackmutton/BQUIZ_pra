@@ -1,4 +1,5 @@
 <?php
+session_start();
 class DB{
     protected $table;
     protected $dsn="mysql:host=localhost;charset=utf8;dbname=dbpra01";
@@ -105,3 +106,10 @@ $Admin=new DB("admin");
 $Menu=new DB("menu");
 $Bottom=new DB("bottom");
 $Total=new DB("views");
+
+if(!isset($_SESSION['view'])){
+    $total=$Total->find(1);
+    $total['view']++;
+    $Total->save($total);
+    $_SESSION['view']=$total['view'];
+}
