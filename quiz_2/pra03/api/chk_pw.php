@@ -2,6 +2,6 @@
 include "base.php";
 $chk=$User->count($_POST);
 if($chk){
-    $_SESSION['user']=$_POST['acc']''
+    $_SESSION['user']=$_POST['acc'];
 }
 echo $chk;
