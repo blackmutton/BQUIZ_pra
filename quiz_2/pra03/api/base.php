@@ -92,3 +92,5 @@ function dd($array){
 function to($url){
     header("location:".$url);
 }
+
+$User=new DB("users");
