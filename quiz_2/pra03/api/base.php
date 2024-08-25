@@ -95,6 +95,7 @@ function to($url){
 
 $User=new DB("users");
 $Total=new DB("total");
+$News=new DB("news");
 
 if(!isset($_SESSION['total'])){
     if($Total->count(['date'=>date("Y-m-d")])){
