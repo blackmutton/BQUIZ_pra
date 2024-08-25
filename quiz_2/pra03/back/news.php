@@ -28,7 +28,7 @@
             }
             ?>
         </table>
-        <div class="cent">
+        <div class="ct">
             <?php
             if($now-1>=1){
                 $prev=$now-1;
