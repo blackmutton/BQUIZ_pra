@@ -39,7 +39,26 @@
                 <?=nl2br($row['article'])?>
             </div>
         </td>
-        <td><?=$row['good']?></td>
+        <td>
+            <span class="num"><?=$row['good']?></span>個人說
+            <img src="./icon/02B03.jpg" style="width:20px">
+            <!-- 從news.php複製 -->
+            <?php
+            if(isset($_SESSION['user'])){
+                $chk=$Log->count(['user'=>$_SESSION['user'],'news'=>$row['id']]);
+                if($chk>0){
+                    ?>
+                    -<a href="#" class="good" data-user="<?=$_SESSION['user']?>" data-news="<?=$row['id']?>">收回讚</a>
+                    <?php
+                }else{
+                    ?>
+                    -<a href="#" class="good" data-user="<?=$_SESSION['user']?>" data-news="<?=$row['id']?>">讚</a>
+                    <?php
+                }
+                
+            }
+            ?>
+    </td>
     </tr>
     <?php
             }
@@ -69,4 +88,23 @@
             $(this).parent().find('.alert').hide()
         }
     )
+
+    $(".good").on("click",function(){
+        let num=$(this).siblings('.num').text()*1
+        let data={user:$(this).data("user"),news:$(this).data("news")}
+        $.post("./api/good.php",data,function(){
+
+            switch($(this).text()){
+                case "讚":
+                    $(this).text("收回讚")
+                    
+                    $(this).siblings('.num').text(num+1)
+                    break;
+                case "收回讚":
+                    $(this).text("讚")
+                    $(this).siblings('.num').text(num-1)
+                    break;
+                }
+        })
+    })
 </script>
