@@ -28,7 +28,23 @@
                 <?=nl2br($row['article'])?>
             </div>
         </td>
-        <td></td>
+        <td>
+            <?php
+            if(isset($_SESSION['user'])){
+                $chk=$Log->count(['user'=>$_SESSION['user'],'news'=>$row['id']]);
+                if($chk>0){
+                    ?>
+                    <a href="#" class="good" data-user="<?=$_SESSION['user']?>" data-news="<?=$row['id']?>">收回讚</a>
+                    <?php
+                }else{
+                    ?>
+                    <a href="#" class="good" data-user="<?=$_SESSION['user']?>" data-news="<?=$row['id']?>">讚</a>
+                    <?php
+                }
+                
+            }
+            ?>
+        </td>
     </tr>
     <?php
             }
@@ -53,5 +69,20 @@
 <script>
     $(".title").on("click",function(){
         $(this).next().children(".short,.all").toggle()
+    })
+
+    $(".good").on("click",function(){
+        let data={user:$(this).data("user"),news:$(this).data("news")}
+        $.post("./api/good.php",data,function(){
+
+            switch($(this).text()){
+                case "讚":
+                    $(this).text("收回讚")
+                    break;
+                case "收回讚":
+                    $(this).text("讚")
+                    break;
+                }
+        })
     })
 </script>
