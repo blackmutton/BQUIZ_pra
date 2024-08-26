@@ -17,9 +17,27 @@
             foreach($rows as $idx=> $row){
             ?>
     <tr>
-        <td><?=$row['title']?></td>
-        <td>
-            <?=mb_substr($row['article'],0,30)?>...
+        <td class="pop"><?=$row['title']?></td>
+        <td class="pop">
+            <div class="short">
+
+                <?=mb_substr($row['article'],0,30)?>...
+            </div>
+            <div class="alert">
+                <div>
+
+                <?php
+                $type['',
+'健康新知',
+'菸害防治',
+'癌症防治',
+'慢性病防治'
+
+                ];
+                echo $type[$row['type']]?>
+                </div>
+                <?=nl2br($row['article'])?>
+            </div>
         </td>
         <td><?=$row['good']?></td>
     </tr>
@@ -43,3 +61,12 @@
             }
             ?>
         </div>
+<script>
+    $(".pop").hover(
+        function (){
+            $(this).parent().find('.alert').show()
+        },function (){
+            $(this).parent().find('.alert').hide()
+        }
+    )
+</script>
