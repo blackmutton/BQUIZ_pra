@@ -41,6 +41,7 @@
         }
         $.post("./api/que.php".que,()=>{
             alert("問卷已新增")
+            clean()
         })
     }
 </script>
