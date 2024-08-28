@@ -140,3 +140,11 @@
 </pre>
     </div>
 </div>
+<script>
+    $(".tag").on("click",function(){
+        $(".tag").removeClass("active")
+        $(".article").removeClass("active")
+        $(this).addClass("active")
+        $(".article").eq($(this).index('.tag')).addClass("active")
+    })
+</script>
