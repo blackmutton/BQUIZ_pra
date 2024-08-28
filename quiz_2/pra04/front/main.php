@@ -14,15 +14,14 @@
     }
     .tag:hover{
         background-color: white;
-        cursor: pointer;
+        cursor:pointer;
     }
     .articles{
         position: relative;
         margin-top:-1px;
-        
     }
     .article{
-        width: 95%;
+        width:95%;
         border:1px solid #999;
         height:450px;
         overflow:auto;
@@ -44,8 +43,8 @@
 </div>
 <div class="articles">
     <div class="article active">
-        <span style='font-weight:bold;font-size:20px;'>健康新知</span>
-<pre>
+        <span style='font-weight:bold;font-size:20px'>健康新知</span>
+        <pre>
 缺乏運動已成為影響全球死亡率的第四大危險因子-國人無規律運動之比率高達72.2%
 資料來源： 行政院衛生署國民健康局 
 發佈日期： 2012 / 10 / 07
@@ -66,8 +65,8 @@
 </pre>
     </div>
     <div class="article">
-        <span style='font-weight:bold;font-size:20px;'>菸害防治</span>
-<pre>
+        <span style='font-weight:bold;font-size:20px'>菸害防治</span>
+        <pre>
 菸害防治法規
 第二十三條　　違反第五條或第十條第一項規定者，處新臺幣一萬元以上五萬元以下罰鍰，並得按次連續處罰。
 第二十四條　　製造或輸入違反第六條第一項、第二項或第七條第一項規定之菸品者，處新臺幣一百萬元以上五百萬元以下罰鍰，並令限期回收；屆期未回收者，按次連續處罰，違規之菸品沒入並銷毀之。
@@ -92,8 +91,8 @@
 </pre>
     </div>
     <div class="article">
-        <span style='font-weight:bold;font-size:20px;'>癌症防治</span>
-<pre>
+        <span style='font-weight:bold;font-size:20px'>癌症防治</span>
+        <pre>
 降低罹癌風險 建構健康生活型態
 癌症防治   三管齊下  Part 1 降低罹癌風險建構健康生活型態 
 
@@ -114,8 +113,8 @@
 </pre>
     </div>
     <div class="article">
-        <span style='font-weight:bold;font-size:20px;'>慢性病防治</span>
-<pre>
+        <span style='font-weight:bold;font-size:20px'>慢性病防治</span>
+        <pre>
 長期憋尿 泌尿系統問題多 
 資料來源：中央健康保險局雙月刊第98期
 上稿日期：2012/08/10
@@ -141,12 +140,3 @@
 </pre>
     </div>
 </div>
-
-<script>
-    $(".tag").on("click",function(){
-        $(".tag").removeClass("active");
-        $(".article").removeClass("active")
-        $(this).addClass("active")
-        $(".article").eq($(this).index('.tag')).addClass("active")
-    })
-</script>

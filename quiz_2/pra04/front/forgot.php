@@ -5,11 +5,10 @@
     <div id="result"></div>
     <div><button onclick="find()">尋找</button></div>
 </fieldset>
-
 <script>
     function find(){
         $.get("./api/forgot.php",{email:$("#email").val()},(res)=>{
-            $("#result").text(res)
+            $("#result").text(res);
         })
     }
 </script>
