@@ -87,7 +87,7 @@ function q($sql){
     return $pdo->query($sql)->fetchAll();
 }
 function to($url){
-    header("location".$url);
+    header("location:".$url);
 }
 function dd($array){
     echo "<pre>";
