@@ -21,7 +21,7 @@ $subject = $Que->find($_GET['id']);
         echo    "<div style='width:50%'>";
         echo        $option['text'];
         echo    "</div>";
-        echo    "<div style='width:50%;;display:flex''>";
+        echo    "<div style='width:50%;display:flex''>";
         echo        "<div class='bar' style='width:{$width}%'></div>";
         echo        "<div>{$option['vote']}票{$show}%</div>";
         echo    "</div>";
