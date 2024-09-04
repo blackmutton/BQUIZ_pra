@@ -1,0 +1,35 @@
+<?php
+include "base.php";
+$do = $_POST['table'];
+$db = ${ucfirst($do)};
+
+foreach ($_POST['id'] as $key => $id) {
+    if (!empty($_POST['del']) && in_array($id, $_POST['id'])) {
+        $db->del($id);
+    } else {
+        $row = $db->find($id);
+        switch ($do) {
+            case 'admin':
+                $row['acc'] = $_POST['acc'][$key];
+                $row['pw'] = $_POST['pw'][$key];
+                break;
+            case 'menu':
+                $row['href'] = $_POST['href'][$key];
+                $row['text'] = $_POST['text'][$key];
+                $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh'])) ? 1 : 0;
+                break;
+            case 'ad':
+            case 'news':
+                $row['text'] = $_POST['text'][$key];
+                $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh'])) ? 1 : 0;
+                break;
+            case 'image':
+            case 'mvim':
+                $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh'])) ? 1 : 0;
+                break;
+        }
+        $db->save($row);
+    }
+}
+
+to("../admin.php?do=$do");
